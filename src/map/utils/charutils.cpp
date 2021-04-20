@@ -4429,6 +4429,14 @@ namespace charutils
 
         Sql_Query(SqlHandle, Query, questslist, PChar->id);
     }
+    
+    uint8 getQuestStatus(CCharEntity* PChar, uint8 log, uint8 quest)
+    {
+        uint8 current  = PChar->m_questLog[log].current[quest / 8] & (1 << (quest % 8));
+        uint8 complete = PChar->m_questLog[log].complete[quest / 8] & (1 << (quest % 8));
+
+        return (complete != 0 ? 2 : (current != 0 ? 1 : 0));
+    }
 
     /************************************************************************
      *                                                                       *
@@ -5675,6 +5683,18 @@ namespace charutils
         }
         return false;
     }
+    
+    void AddCharVar(CCharEntity* PChar, const char* var, int32 value)
+    {
+        if (PChar == nullptr)
+        {
+            return;
+        }
+        const char* Query =
+            "INSERT INTO char_vars SET charid = %u, varname = '%s', value = %i "
+            "ON DUPLICATE KEY UPDATE value = value + %i;";
+        Sql_Query(SqlHandle, Query, PChar->id, var, value, value);
+    }
 
     int32 GetCharVar(CCharEntity* PChar, const char* var)
     {
@@ -5701,6 +5721,35 @@ namespace charutils
             Sql_Query(SqlHandle, fmtQuery, PChar->id, var, value, value);
         }
     }
+
+//    void SetCharVar(uint32 charId, const char* var, int32 value)
+//    {
+//        int32 tries  = 0;
+//        int32 verify = INT_MIN;
+//        if (value == 0)
+//        {
+//            Sql_Query(SqlHandle,
+//                      "DELETE FROM char_vars WHERE charid = %u AND varname "
+//                      "= '%s' LIMIT 1;",
+//                      charId, var);
+//        }
+//        else
+//        {
+//            Sql_Query(SqlHandle,
+//                      "INSERT INTO char_vars SET charid = %u, varname = '%s', "
+//                      "value = %i ON DUPLICATE KEY UPDATE value = %i;",
+//                      charId, var, value, value);
+//        }
+//    }
+
+//    void SetCharVar(CCharEntity* PChar, const char* var, int32 value)
+//    {
+//        if (PChar == nullptr)
+//        {
+//            return;
+//        }
+//        return SetCharVar(PChar->id, var, value);
+//    }
 
     uint16 getWideScanRange(JOBTYPE job, uint8 level)
     {

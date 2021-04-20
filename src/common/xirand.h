@@ -1,4 +1,5 @@
-﻿#include <random>
+#include <random>
+#include <deque>
 
 class xirand
 {
@@ -62,6 +63,15 @@ public:
     {
         // NOTE: the specialisation for integral types uses: dist(min, max - 1), so no need to offset container->size()
         return container->at(GetRandomNumber<std::size_t>(0U, container->size()));
+    }
+
+    // Gets a random element from the given deque
+    // @param deque deque to get a random element from
+    // @returns deque
+    template <typename T>
+    static inline T GetRandomElement(std::deque<T>* deque)
+    {
+        return deque->at(GetRandomNumber<uint32>(0, deque->size() - 1));
     }
 
     // Gets a random element from the given stl-like container (container must have members: at() and size()).

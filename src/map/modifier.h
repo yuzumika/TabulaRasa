@@ -837,9 +837,13 @@ enum class Mod
     SUPERIOR_LEVEL  = 997, // SU0..5
     ONE_HOUR_RECAST = 996, // Decreases the recast time of one-hour abilities by n minutes.
 
+    PENGUIN_RING_EFFECT   = 1001, // +2 on fishing arrow delay / fish movement for mini - game
+    ALBATROSS_RING_EFFECT = 1002, // adds 30 seconds to mini - game time
+    PELICAN_RING_EFFECT   = 1003, // adds extra skillup roll for fishing
+
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 1001,
+    // SPARE = 1004,
 };
 
 // temporary workaround for using enum class as unordered_map key until compilers support it
