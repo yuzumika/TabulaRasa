@@ -3715,6 +3715,7 @@ namespace luautils
     ************************************************************************/
     int PushRodInfo(lua_State* L, rod_t* Rod)
     {
+        /*
         lua_newtable(L);
         lua_pushstring(L, "id");
         lua_pushnumber(L, Rod->rodID);
@@ -3777,10 +3778,12 @@ namespace luautils
         lua_pushnumber(L, Rod->maxRank);
         lua_settable(L, -3);
         return 1;
+        */
     }
 
     int PushBaitInfo(lua_State* L, bait_t* Bait)
     {
+        /*
         lua_newtable(L);
         lua_pushstring(L, "id");
         lua_pushnumber(L, Bait->baitID);
@@ -3804,10 +3807,12 @@ namespace luautils
         lua_pushboolean(L, Bait->rankMod);
         lua_settable(L, -3);
         return 1;
+        */
     }
 
     int PushCatchInfo(lua_State* L, fishresponse_t* Response)
     {
+        /*
         lua_newtable(L);
         lua_pushstring(L, "hooked");
         lua_pushboolean(L, Response->hooked);
@@ -3915,6 +3920,7 @@ namespace luautils
         lua_pushinteger(L, Response->angle);
         lua_settable(L, -3);
         return 1;
+        */
     }
 
     /********************************************************************
@@ -3922,6 +3928,7 @@ namespace luautils
     *********************************************************************/
     fishoverridesys_t* OnFishingStart(CCharEntity* PChar, rod_t* Rod, bait_t* Bait, uint8 AreaID)
     {
+        /*
         fishoverridesys_t* retVal = new fishoverridesys_t();
         retVal->flags             = 0;
         retVal->delay             = 13;
@@ -3946,6 +3953,8 @@ namespace luautils
         int n         = lua_gettop(LuaHandle);
         lua_pop(LuaHandle, n);
         return retVal;
+        */
+        return 0;
     }
 
     /********************************************************************
@@ -3953,6 +3962,7 @@ namespace luautils
     *********************************************************************/
     fishoverridepool_t* OnFishingCheck(CCharEntity* PChar, rod_t* Rod, bait_t* Bait, uint8 AreaID)
     {
+        /*
         fishoverridepool_t* retVal = new fishoverridepool_t();
         retVal->flags              = 0;
         retVal->fish.clear();
@@ -4084,6 +4094,8 @@ namespace luautils
         int n = lua_gettop(LuaHandle);
         lua_pop(LuaHandle, n);
         return retVal;
+        */
+        return 0;
     }
 
     /********************************************************************
@@ -4091,6 +4103,7 @@ namespace luautils
     *********************************************************************/
     reeloverride_t* OnFishingReel(CCharEntity* PChar, fishresponse_t* Response)
     {
+        /*
         reeloverride_t* retVal = nullptr;
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
         if (prepFile(File, "onFishingEnd"))
@@ -4112,6 +4125,8 @@ namespace luautils
         int n = lua_gettop(LuaHandle);
         lua_pop(LuaHandle, n);
         return retVal;
+        */
+        return 0;
     }
 
     /********************************************************************
@@ -4119,6 +4134,7 @@ namespace luautils
     *********************************************************************/
     int32 OnFishingEnd(CCharEntity* PChar, fishresponse_t* Response)
     {
+        /*
         lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
         if (prepFile(File, "onFishingEnd"))
         {
@@ -4136,6 +4152,8 @@ namespace luautils
         int n = lua_gettop(LuaHandle);
         lua_pop(LuaHandle, n);
         return 0;
+        */
+        return 0;
     }
 
     /********************************************************************
@@ -4143,6 +4161,7 @@ namespace luautils
     *********************************************************************/
     int32 GetFishers(lua_State* L)
     {
+        /*
         uint8  level    = 75;
         uint16 fishTime = 300;
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
@@ -4185,22 +4204,25 @@ namespace luautils
             fisherList = nullptr;
         }
         return 1;
+        */
     }
 
     /********************************************************************************
         GetFishRankingInformation - Get Fish Ranking Information
     ********************************************************************************/
-    int32 GetFishRankingInformation(lua_State* L)
+    sol::table GetFishRankingInformation()
     {
         fish_ranking_contest_info info                = fishingutils::FishRankingContestInfo;
         FishRankingRules          currentRules        = info.currentRules;
         FishRankingRules          nextRules           = info.nextRules;
         uint32                    periodTimeRemaining = 0;
         uint32                    now                 = (uint32)time(nullptr);
+
         if (now < fishingutils::FishRankingContestInfo.endTime)
         {
             periodTimeRemaining = fishingutils::FishRankingContestInfo.endTime - now;
         }
+
         uint32 days         = periodTimeRemaining / (24 * 3600);
         periodTimeRemaining = periodTimeRemaining % (24 * 3600);
         uint32 hours        = periodTimeRemaining / 3600;
@@ -4208,88 +4230,56 @@ namespace luautils
         uint32 minutes         = periodTimeRemaining / 60;
         uint32 seconds         = periodTimeRemaining % 60;
         uint16 submissionCount = fishingutils::GetTotalFishRankingSubmissions();
-        lua_createtable(L, 16, 0);
-        int8 newTable = lua_gettop(L);
-        lua_pushnumber(L, info.period);
-        lua_setfield(L, newTable, "period");
-        lua_pushnumber(L, info.controlMode);
-        lua_setfield(L, newTable, "control");
-        lua_pushnumber(L, info.debugLevel);
-        lua_setfield(L, newTable, "debug");
-        lua_pushnumber(L, info.timing);
-        lua_setfield(L, newTable, "timing");
-        lua_pushnumber(L, currentRules.info.fishId);
-        lua_setfield(L, newTable, "currentFishId");
-        lua_pushnumber(L, currentRules.info.size);
-        lua_setfield(L, newTable, "currentSize");
-        lua_pushnumber(L, currentRules.info.stat);
-        lua_setfield(L, newTable, "currentStat");
-        lua_pushnumber(L, nextRules.info.fishId);
-        lua_setfield(L, newTable, "nextFishId");
-        lua_pushnumber(L, nextRules.info.size);
-        lua_setfield(L, newTable, "nextSize");
-        lua_pushnumber(L, nextRules.info.stat);
-        lua_setfield(L, newTable, "nextStat");
-        lua_pushnumber(L, days);
-        lua_setfield(L, newTable, "timeDays");
-        lua_pushnumber(L, hours);
-        lua_setfield(L, newTable, "timeHours");
-        lua_pushnumber(L, minutes);
-        lua_setfield(L, newTable, "timeMinutes");
-        lua_pushnumber(L, seconds);
-        lua_setfield(L, newTable, "timeSeconds");
-        lua_pushnumber(L, submissionCount);
-        lua_setfield(L, newTable, "submissionCount");
-        lua_pushboolean(L, info.acceptingSubmissions);
-        lua_setfield(L, newTable, "enabled");
-        return 1;
+
+        sol::table rankingInfoTable = lua.create_table();
+        rankingInfoTable["period"]  = info.period;
+        rankingInfoTable["control"] = info.controlMode;
+        rankingInfoTable["debug"]   = info.debugLevel;
+        rankingInfoTable["timing"]  = info.timing;
+
+        rankingInfoTable["currentFishId"] = currentRules.info.fishId;
+        rankingInfoTable["currentSize"]   = currentRules.info.size;
+        rankingInfoTable["currentStat"]   = currentRules.info.stat;
+
+        rankingInfoTable["nextFishId"] = nextRules.info.fishId;
+        rankingInfoTable["nextSize"]   = nextRules.info.size;
+        rankingInfoTable["nextStat"]   = nextRules.info.stat;
+
+        rankingInfoTable["timeDays"]    = days;
+        rankingInfoTable["timeHours"]   = hours;
+        rankingInfoTable["timeMinutes"] = minutes;
+        rankingInfoTable["timeSeconds"] = seconds;
+        rankingInfoTable["submissionCount"] = submissionCount;
+        rankingInfoTable["enabled"]         = info.acceptingSubmissions;
+
+        return rankingInfoTable;
     }
 
     /********************************************************************************
         UpdateFishRankingConfiguration - Update Fish Ranking Configuration
     ********************************************************************************/
-    int32 UpdateFishRankingConfiguration(lua_State* L)
+    void UpdateFishRankingConfiguration(std::string const& tag, uint8 value)
     {
-        XI_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-        XI_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isstring(L, -2));
-        const char* field  = lua_tostring(L, -2);
-        string_t    sField = string_t(field);
-        uint8       value  = (uint8)lua_tointeger(L, -1);
-        if (sField == "control")
+        if (tag == "control")
+        {
             fishingutils::FishRankingContestInfo.controlMode = (FISHRANKING_CONTROLMODE)value;
-        else if (sField == "debug")
+        }
+        else if (tag == "debug")
+        {
             fishingutils::FishRankingContestInfo.debugLevel = (FISHRANKING_DEBUGLEVEL)value;
-        else if (sField == "timing")
+        }
+        else if (tag == "timing")
+        {
             fishingutils::FishRankingContestInfo.timing = (FISHRANKING_TIMING)value;
-        return 0;
+        }
     }
 
     /********************************************************************************
         AdvanceFishRankingPeriod - advance the fish ranking period
     ********************************************************************************/
-    int32 AdvanceFishRankingPeriod(lua_State* L)
+    uint8 AdvanceFishRankingPeriod()
     {
-        uint8 week = fishingutils::AdvanceFishRankingPeriod();
-        lua_pushinteger(L, week);
-        return 1;
-    }
-
-    /********************************************************************************
-        GetCurrentFishRankingScore - Get fish ranking score of player by id
-    ********************************************************************************/
-    int32 GetCurrentFishRankingScore(lua_State* L)
-    {
-        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
-        {
-            uint32 charId = (uint32)lua_tonumber(L, 1);
-            if (charId > 0)
-            {
-                uint16 score = fishingutils::GetCurrentFishRankingScore(charId);
-                lua_pushnumber(L, score);
-                return 1;
-            }
-        }
-        return -1;
+        return (uint8)fishingutils::AdvanceFishRankingPeriod();
     }
 
     void OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID)
