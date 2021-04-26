@@ -211,6 +211,10 @@ namespace luautils
         set_function("getSpell", &luautils::GetSpell);
         set_function("selectDailyItem", &luautils::SelectDailyItem);
 
+        // Fishing
+        set_function("advanceFishRankingPeriod", &luautils::AdvanceFishRankingPeriod);
+        set_function("getFishRankingInformation", &luautils::GetFishRankingInformation);
+
         // Register Sol Bindings
         CLuaAbility::Register();
         CLuaAction::Register();
@@ -4279,7 +4283,7 @@ namespace luautils
     ********************************************************************************/
     uint8 AdvanceFishRankingPeriod()
     {
-        return (uint8)fishingutils::AdvanceFishRankingPeriod();
+        return static_cast<uint8>(fishingutils::AdvanceFishRankingPeriod());
     }
 
     void OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID)

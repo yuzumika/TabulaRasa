@@ -12637,7 +12637,7 @@ void CLuaBaseEntity::addDropListModification(uint16 id, uint16 newRate, sol::var
  *  Purpose : Get current fish contest ranking score for player
  *  Example : player:getCurrentFishRankingScore()
  ************************************************************************/
-uint16 CLuaBaseEntity::GetCurrentFishRankingScore()
+uint16 CLuaBaseEntity::getCurrentFishRankingScore()
 {
     XI_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
@@ -13342,6 +13342,9 @@ void CLuaBaseEntity::Register()
 
     SOL_REGISTER("getPlayerRegionInZone", CLuaBaseEntity::getPlayerRegionInZone);
     SOL_REGISTER("updateToEntireZone", CLuaBaseEntity::updateToEntireZone);
+
+    // Fishing
+    SOL_REGISTER("getCurrentFishRankingScore", CLuaBaseEntity::getCurrentFishRankingScore);
 }
 
 //==========================================================//

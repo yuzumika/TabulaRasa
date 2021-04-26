@@ -754,7 +754,7 @@ public:
     int16  getTHlevel();                                                                 // Returns the Monster's current Treasure Hunter Tier
     void   addDropListModification(uint16 id, uint16 newRate, sol::variadic_args va);    // Adds a modification to the drop list of this mob, erased on death
 
-    uint16 GetCurrentFishRankingScore();
+    uint16 getCurrentFishRankingScore();
 
     static void Register();
 };

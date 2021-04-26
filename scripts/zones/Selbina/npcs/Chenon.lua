@@ -15,16 +15,16 @@ local RankPrizeAnimations = { 311, 312, 313, 314 }
 function SetRankingTitle(player, place)
     if place == 1 then
         player:playAnimation(RankPrizeAnimations[1],0)
-        player:setTitle(dsp.title.GOLD_HOOK)
+        player:setTitle(xi.title.GOLD_HOOK)
     elseif place == 2 then
         player:playAnimation(RankPrizeAnimations[2],0)
-        player:setTitle(dsp.title.MYTHRIL_HOOK)
+        player:setTitle(xi.title.MYTHRIL_HOOK)
     elseif place == 3 then
         player:playAnimation(RankPrizeAnimations[3],0)
-        player:setTitle(dsp.title.SILVER_HOOK)
+        player:setTitle(xi.title.SILVER_HOOK)
     elseif place >= 4 and place <= 10 then
         player:playAnimation(RankPrizeAnimations[4],0)
-        player:setTitle(dsp.title.COPPER_HOOK)
+        player:setTitle(xi.title.COPPER_HOOK)
     end
 end
 
@@ -40,7 +40,7 @@ entity.onTrade = function(player, npc, trade)
 
     if info.period == 2 and item ~= nil and item:isFish() and item:getID() == info.currentFishId and trade:getItemCount() == 1 then
         local score = 0
-        local prevscore = GetCurrentFishRankingScore(player:getID())
+        local prevscore = player:getCurrentFishRankingScore()
         local length = item:getLength()
         local weight = item:getWeight()
 
@@ -74,12 +74,12 @@ entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    local debugMode = player:getDebugMode()
+    local debugMode = false
     local info = GetFishRankingInformation()
 
     if not debugMode then
         local hasRewards = 0
-        local prevscore = GetCurrentFishRankingScore(player:getID())
+        local prevscore = player:getCurrentFishRankingScore()
 
         if info.period == 4 then
             local rank = player:getFishRankingRank()
@@ -95,8 +95,8 @@ entity.onTrigger = function(player, npc)
         -- param5       current score
         -- param6       0
         -- param7       [period]:[minutes]
-
-        player:startEvent(10006,info.period,info.currentFishId,info.currentStat,info.currentSize,hasRewards,prevscore,0,0)
+        printf("%d", info.period)
+        player:startEvent(10006, info.period, info.currentFishId, info.currentStat, info.currentSize, hasRewards, prevscore, 0, 0)
     else
         --param0 - contesting           = 0,
         --         preparing to accept  = 1,
@@ -116,7 +116,7 @@ entity.onTrigger = function(player, npc)
 end
 
 entity.onEventUpdate = function(player, csid, option)
-    local debugMode = player:getDebugMode()
+    local debugMode = false
 
     local info = GetFishRankingInformation()
 
@@ -144,7 +144,7 @@ entity.onEventUpdate = function(player, csid, option)
         end
         -- open menu
         if option == 149 then
-            local rank = player:getFishRankingRank()
+            local rank = 0 --player:getFishRankingRank()
             if info.period == 4 then
                 local notClaimed = 1
                 if rank < 1 or rank > 20 or player:hasClaimedFishingItems() then
@@ -168,7 +168,7 @@ entity.onEventUpdate = function(player, csid, option)
         end
         -- get award history
         if option == 147 then
-            local awardhistory = player:getVar("[FishRanking]Awards")
+            local awardhistory = player:getCharVar("[FishRanking]Awards")
             -- [0: ?], [1: fishid], [2: ?], [3: ?], [4: ?], [5: award histories[4,3,2,1]], [6: hours], [7: minutes]
             player:updateEvent(info.period,info.currentFishId,info.currentStat,info.currentSize,0,awardhistory,info.timeHours,info.timeMinutes)
         end
@@ -262,7 +262,7 @@ entity.onEventUpdate = function(player, csid, option)
 end
 
 entity.onEventFinish = function(player, csid, option)
-    local debugMode = player:getDebugMode()
+    local debugMode = false
     local info = GetFishRankingInformation()
 
     if csid == 10006 and info.period == 4 then

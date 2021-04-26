@@ -148,7 +148,7 @@ namespace luautils
     auto GetSpell(uint16 id) -> std::optional<CLuaSpell>;
 
     auto   SpawnMob(uint32 mobid, sol::object const& arg2, sol::object const& arg3) -> std::optional<CLuaBaseEntity>; // Spawn Mob By Mob Id - NMs, BCNM...
-    void   DespawnMob(uint32 mobid, sol::object const& arg2);                                                           // Despawn (Fade Out) Mob By Id
+    void   DespawnMob(uint32 mobid, sol::object const& arg2);                                                         // Despawn (Fade Out) Mob By Id
     auto   GetPlayerByName(std::string name) -> std::optional<CLuaBaseEntity>;
     auto   GetPlayerByID(uint32 pid) -> std::optional<CLuaBaseEntity>;
     auto   GetMagianTrial(sol::variadic_args va) -> sol::table;
@@ -203,10 +203,9 @@ namespace luautils
     reeloverride_t*     OnFishingReel(CCharEntity* PChar, fishresponse_t* Response);                // fishing process reel in
     int32               OnFishingEnd(CCharEntity* PChar, fishresponse_t* Response);                 // triggers when player stops fishing
     int32               GetFishers(lua_State* L);                                                   // Get Fisher List
-    int32               GetFishRankingInformation(lua_State* L);                                    // Get Fish Ranking Information
+    sol::table          GetFishRankingInformation();                                                // Get Fish Ranking Information
     int32               UpdateFishRankingConfiguration(lua_State* L);                               // Update Fish Ranking Configuration
-    int32               AdvanceFishRankingPeriod(lua_State* L);                                     // Advance fish ranking period
-    int32               GetCurrentFishRankingScore(lua_State* L);                                   // Get current character submitted fish ranking score
+    uint8               AdvanceFishRankingPeriod();                                                 // Advance fish ranking period
 
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                                // triggered when user targets npc and clicks action button
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result, uint16 extras); // triggered when game triggers event update during cutscene with extra parameters (battlefield)
@@ -231,12 +230,12 @@ namespace luautils
     auto  OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param = ITEMCHECK::NONE, CBaseEntity* PCaster = nullptr) -> std::tuple<int32, int32, int32>; // check to see if item can be used
     int32 CheckForGearSet(CBaseEntity* PTarget);                                                                                                                 // check for gear sets
 
-    int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);                   // triggers when a player attempts to cast a spell
+    int32  OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell);                   // triggers when a player attempts to cast a spell
     uint32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);                     // triggered when casting a spell
-    int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);                                          // triggered just before casting a spell
-    auto  OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget) -> std::optional<SpellID>; // triggered when monster wants to use a spell on target
-    int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);                      // triggered when spell cast on monster
-    int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill);              // Triggered when Weaponskill strikes monster
+    int32  OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);                                          // triggered just before casting a spell
+    auto   OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget) -> std::optional<SpellID>; // triggered when monster wants to use a spell on target
+    int32  OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);                      // triggered when spell cast on monster
+    int32  OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill);              // Triggered when Weaponskill strikes monster
 
     int32 OnMobInitialize(CBaseEntity* PMob); // Used for passive trait
     int32 ApplyMixins(CBaseEntity* PMob);
@@ -293,17 +292,17 @@ namespace luautils
     auto   GetServerVersion() -> sol::table;
 
     int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, int32 damage); // for items with additional effects
-    int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, uint32 damage);                         // for mobs with spikes
+    int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, uint32 damage);                        // for mobs with spikes
 
     auto NearLocation(sol::table const& table, float radius, float theta) -> sol::table;
 
     void OnPlayerLevelUp(CCharEntity* PChar);
     void OnPlayerLevelDown(CCharEntity* PChar);
 
-    bool OnChocoboDig(CCharEntity* PChar, bool pre);                    // chocobo digging, pre = check
+    bool OnChocoboDig(CCharEntity* PChar, bool pre); // chocobo digging, pre = check
 
     // Utility method: checks for and loads a lua function for events
-    auto LoadEventScript(CCharEntity* PChar, const char* functionName) -> sol::function; 
+    auto LoadEventScript(CCharEntity* PChar, const char* functionName) -> sol::function;
 
     uint16 GetDespoilDebuff(uint16 itemId); // Ask the database for an effectId based on Item despoiled (returns 0 if not in db)
 
