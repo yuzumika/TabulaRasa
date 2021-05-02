@@ -6302,6 +6302,25 @@ void CLuaBaseEntity::addExp(uint32 exp)
 }
 
 /************************************************************************
+ *  Function: addCapacityPoints()
+ *  Purpose : Adds a set amount of Capacity Points to the player
+ *  Example : player:addCapacity(1000)
+ *  Notes   : Used for RoE rewards
+ ************************************************************************/
+
+void CLuaBaseEntity::addCapacityPoints(uint32 capacity)
+{
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        return;
+    }
+
+    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+
+    charutils::AddCapacityPoints(PChar, m_PBaseEntity, capacity);
+}
+
+/************************************************************************
  *  Function: delExp()
  *  Purpose : Takes XP from a player
  *  Example : player:delExp(amount)
@@ -12954,6 +12973,7 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("setMerits", CLuaBaseEntity::setMerits);
 
     SOL_REGISTER("getJobPointLevel", CLuaBaseEntity::getJobPointLevel);
+    SOL_REGISTER("addCapacityPoints", CLuaBaseEntity::addCapacityPoints);
     SOL_REGISTER("setCapacityPoints", CLuaBaseEntity::setCapacityPoints);
     SOL_REGISTER("setJobPoints", CLuaBaseEntity::setJobPoints);
 
