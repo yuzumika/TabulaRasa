@@ -23,7 +23,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y software-properties-common cmake libmariadb-dev-compat libluajit-5.1-dev libzmq3-dev zlib1g-dev libssl-dev
+        sudo apt-get install -y software-properties-common cmake libmariadb-dev-compat libluajit-5.1-dev libzmq5 libzmq3-dev zlib1g-dev libssl-dev
     - name: Configure CMake
       run: |
         export CC=/usr/bin/clang-9
@@ -42,7 +42,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y software-properties-common cmake libmariadb-dev-compat libluajit-5.1-dev libzmq3-dev zlib1g-dev libssl-dev
+        sudo apt-get install -y software-properties-common cmake libmariadb-dev-compat libluajit-5.1-dev libzmq5 libzmq3-dev zlib1g-dev libssl-dev
     - name: Configure CMake
       run: |
         export CC=/usr/bin/gcc-9
