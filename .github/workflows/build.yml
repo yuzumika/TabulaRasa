@@ -15,7 +15,7 @@ on:
 
 jobs:
   Linux_1804_Clang_9_64bit:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
       with:
@@ -34,7 +34,7 @@ jobs:
         make -j $(nproc)
 
   Linux_1804_GCC9_64bit:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
       with:
