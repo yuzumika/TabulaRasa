@@ -14,7 +14,7 @@ on:
       - 'feature/**'
 
 jobs:
-  Linux_1804_Clang_9_64bit:
+  Linux_2004_Clang_9_64bit:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
@@ -33,7 +33,7 @@ jobs:
       run: |
         make -j $(nproc)
 
-  Linux_1804_GCC9_64bit:
+  Linux_2004_GCC9_64bit:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v1
