@@ -1,5 +1,9 @@
 **This repository may contain commits and even whole branches from several sources related to Server Emulation of FFXI.**
 
+# NOTICE: the repo's url and project name will be updated in the near future. 
+* There will ***absolutely NOT*** be branding changes in teh code base related to this. It's all "xi" and it's staying "xi".
+* Keep an eye on this page for update into, including instructions to update your git remote and bookmarks.
+* Our derpy crosseyed mascot is already gone.
 
 ## Branches
 
@@ -7,11 +11,11 @@ https://github.com/DerpyProjectGroup/topaz/branches/all
 
  * Info : contains readme and other info and documentation
 
- * [Topaz](https://github.com/DerpyProjectGroup/topaz/tree/topaz) : this branch contains topaz-next, in its entirety, and some additional bugfix commits pulled in at Teo's Leisure.. NO NEW FEATURES will be added to this branch via public pull requests. "Branding" has been changed for the _**FINAL**_ time to be project neutral. No more dsp or tpz.
+ * ~~[Topaz](https://github.com/DerpyProjectGroup/topaz/tree/topaz) : this branch contains topaz-next, in its entirety, and some additional bugfix commits pulled in at Teo's Leisure.. NO NEW FEATURES will be added to this branch via public pull requests. "Branding" has been changed for the _**FINAL**_ time to be project neutral. No more dsp or tpz.~~ _depricated, the core devs are working out of the base stable branch now_
 
- * [Allegedly-Stable](https://github.com/DerpyProjectGroup/topaz/tree/allegedly-stable): community maintained "stable branch". If the community feels a change is mature enough to go into this branch, they can bring it to our attention to be merged here.
+ * [Allegedly-Stable](https://github.com/DerpyProjectGroup/topaz/tree/allegedly-stable): community maintained "stable branch". If the community feels a change is mature enough to go into this branch, they can bring it to our attention to be merged here. _This branch will be renamed to `base` in the upcoming move._
 
- * [Freedom](https://github.com/DerpyProjectGroup/topaz/tree/freedom) : this branch, anyone can PR anything to. If enough people approve it, it will get merged. **Anyone can review.**
+ * [Freedom](https://github.com/DerpyProjectGroup/topaz/tree/freedom) : this branch, anyone can PR anything to. If enough people approve it, it will get merged. **Anyone can review. All the things will land here, but base your PRs off the other branch please!** _This branch will be renamed to `everything` in the upcoming move._
 
  * [Others](https://github.com/DerpyProjectGroup/topaz/branches/all): there may be additional branches not specified here.
 
