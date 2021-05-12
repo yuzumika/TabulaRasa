@@ -11,7 +11,7 @@ https://github.com/DerpyProjectGroup/topaz/branches/all
 
  * Info : contains readme and other info and documentation
 
- * ~~[Topaz](https://github.com/DerpyProjectGroup/topaz/tree/topaz) : this branch contains topaz-next, in its entirety, and some additional bugfix commits pulled in at Teo's Leisure.. NO NEW FEATURES will be added to this branch via public pull requests. "Branding" has been changed for the _**FINAL**_ time to be project neutral. No more dsp or tpz.~~ _depricated, the core devs are working out of the base stable branch now_
+ * ~~[Topaz](https://github.com/DerpyProjectGroup/topaz/tree/topaz) : this branch contains topaz-next, in its entirety, and some additional bugfix commits pulled in at Teo's Leisure.. NO NEW FEATURES will be added to this branch via public pull requests. "Branding" has been changed for the _**FINAL**_ time to be project neutral. No more dsp or tpz.~~ _deprecated, the core devs are working out of the base stable branch now_
 
  * [Allegedly-Stable](https://github.com/DerpyProjectGroup/topaz/tree/allegedly-stable): community maintained "stable branch". If the community feels a change is mature enough to go into this branch, they can bring it to our attention to be merged here. _This branch will be renamed to `base` in the upcoming move._
 
