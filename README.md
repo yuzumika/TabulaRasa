@@ -1,7 +1,7 @@
 **This repository may contain commits and even whole branches from several sources related to Server Emulation of FFXI.**
 
 # NOTICE: the repo's url and project name will be updated in the near future. 
-* There will ***absolutely NOT*** be branding changes in teh code base related to this. It's all "xi" and it's staying "xi".
+* There will ***absolutely NOT*** be branding changes in the code base related to this. It's all "xi" and it's staying "xi".
 * Keep an eye on this page for update into, including instructions to update your git remote and bookmarks.
 * Our derpy crosseyed mascot is already gone.
 
