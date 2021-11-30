@@ -972,6 +972,17 @@ end
 -----------------------------------
 
 function EventTriggerBCNM(player, npc)
+    -- Cannot enter if anyone in party is level/master sync'd
+    for _, member in pairs(player:getAlliance()) do
+        if member:isLevelSync() then
+            local zoneId = player:getZoneID()
+            local ID = zones[zoneId]
+            -- Your party is unable to participate because certain members' levels are restricted
+            player:messageSpecial(ID.text.MEMBERS_LEVELS_ARE_RESTRICTED)
+            return false
+        end
+    end
+
     -- player is in battlefield and clicks to leave
     if player:getBattlefield() then
         player:startEvent(32003)
