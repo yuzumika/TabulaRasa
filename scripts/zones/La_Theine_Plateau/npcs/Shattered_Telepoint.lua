@@ -33,8 +33,6 @@ entity.onTrigger = function(player, npc)
         player:startEvent(15, player:getZoneID(), 0, 0, 0, 0, 0, rank6)
 
     -- CoP Missions
-    elseif copMission == xi.mission.id.cop.BELOW_THE_ARKS and player:getCharVar("PromathiaStatus") == 1 then
-        player:startEvent(202, 0, 0, 1) -- first time in promy -> have you made your preparations cs
     elseif
         copMission == xi.mission.id.cop.THE_MOTHERCRYSTALS and
         (
@@ -85,8 +83,6 @@ entity.onEventFinish = function(player, csid, option)
         player:setCharVar("cspromy2", 0)
         player:setCharVar("cs2ndpromy", 1)
         player:setPos(92.033, 0, 80.380, 255, 16) -- To Promyvion Holla
-    elseif csid == 202 and option == 0 then
-        player:setPos(-266.76, -0.635, 280.058, 0, 14) -- To Hall of Transference {R}
     end
 end
 

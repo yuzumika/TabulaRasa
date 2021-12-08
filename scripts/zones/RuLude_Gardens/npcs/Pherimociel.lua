@@ -12,21 +12,9 @@ entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    local Hrandom =math.random()
+    local Hrandom = math.random()
 
     if
-        player:getCurrentMission(COP) == xi.mission.id.cop.BELOW_THE_ARKS and
-        player:getCharVar("PromathiaStatus") == 0
-    then
-        player:startEvent(24)
-
-    elseif
-        player:getCurrentMission(COP) == xi.mission.id.cop.BELOW_THE_ARKS and
-        player:getCharVar("PromathiaStatus") == 1
-    then
-        player:startEvent(25)
-
-    elseif
         player:getCurrentMission(COP) == xi.mission.id.cop.THREE_PATHS and
         player:getCharVar("COP_Tenzen_s_Path") == 3
     then
@@ -77,11 +65,6 @@ end
 entity.onEventFinish = function(player, csid, option)
     if csid == 10098 then
         player:setPos(0, 0, 0, 0, 51)
-    elseif csid == 24 then
-        player:setCharVar("PromathiaStatus", 1) -- first cs mission 1.2 has been seen YOU CAN NOW ENTER TO PROMYVION
-        player:setCharVar("FirstPromyvionHolla", 1)
-        player:setCharVar("FirstPromyvionMea", 1)
-        player:setCharVar("FirstPromyvionDem", 1)
     elseif csid == 58 then
         player:setCharVar("COP_Tenzen_s_Path", 4)
     elseif csid == 10046 or csid == 10049 then
