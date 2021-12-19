@@ -2,14 +2,13 @@
 -- Area: Ru'Lude Gardens
 --  NPC: Explorer Moogle
 -- Type: Mog Tablet
--- !pos 1.000 -1 0.000 243 -- TODO: This is wrong
+-- !pos -5.687 8.999 -41.341 243
 -----------------------------------
 require('scripts/globals/mog_tablets')
 -----------------------------------
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
-    -- blank
 end
 
 entity.onTrigger = function(player, npc)
