@@ -108,9 +108,18 @@ xi.mogTablet.onZoneIn = function(zone, player)
 end
 
 -- Yhoator Jungle: NPC Chat 11051
--- Tahrongi Canyon: NPC Char 10872
+-- Tahrongi Canyon: NPC Chat 10872
 -- You've recovered one of the long-lost mog tablets!
 -- You should share the news of your discovery with the Explorer Moogle in Ru'Lude Gardens.
+
+-- entityAnimationPacket: horuÍÍ
+--      |  0  1  2  3   4  5  6  7   8  9  A  B   C  D  E  F    | 0123456789ABCDEF
+-- -----+----------------------------------------------------  -+------------------
+--    0 | 38 0A 51 01  CD 71 06 01  CD 71 06 01  68 6F 72 75    | 8.Q..q...q..horu
+--   10 | CD 01 CD 01                                           | ....
+
+-- ^ The animation packet might not be needed, the animation plays when the entity's
+--   status changes to 0 (NORMAL).
 
 -- A mog tablet has been discovered in <zone>!
 xi.mogTablet.tabletOnTrigger = function(player, npc)
