@@ -68,6 +68,15 @@ xi.mogTablet.zones =
     [28] = xi.zone.VALLEY_OF_SORROWS,
 }
 
+-- [zoneId] = { { id, x, y, z }, {...}, {...}, }
+xi.mogTablet.locations =
+{
+    [xi.zone.VALKURM_DUNES] =
+    {
+        { 17199762, 288.756, -0.262, 2.605 },
+    },
+}
+
 -- For use with message 15
 xi.mogTablet.powers =
 {
@@ -107,22 +116,26 @@ xi.mogTablet.onZoneIn = function(zone, player)
         xi.mogTablet.powers.BLOOD_OF_THE_VAMPYR)
 end
 
--- Yhoator Jungle: NPC Chat 11051
--- Tahrongi Canyon: NPC Chat 10872
--- You've recovered one of the long-lost mog tablets!
--- You should share the news of your discovery with the Explorer Moogle in Ru'Lude Gardens.
-
--- entityAnimationPacket: horuÍÍ
---      |  0  1  2  3   4  5  6  7   8  9  A  B   C  D  E  F    | 0123456789ABCDEF
--- -----+----------------------------------------------------  -+------------------
---    0 | 38 0A 51 01  CD 71 06 01  CD 71 06 01  68 6F 72 75    | 8.Q..q...q..horu
---   10 | CD 01 CD 01                                           | ....
-
--- ^ The animation packet might not be needed, the animation plays when the entity's
---   status changes to 0 (NORMAL).
-
--- A mog tablet has been discovered in <zone>!
 xi.mogTablet.tabletOnTrigger = function(player, npc)
+    local interactedWith = npc:getLocalVar("interactedWith")
+    if interactedWith == 1 then
+        local ID = zones[player:getZoneID()]
+        player:messageSpecial(ID.text.YOU_RECOVERED_MOG_TABLET)
+        player:setCharVar("[MOGTABLET]Found", 1)
+
+        -- TODO: Send out server-wide message to relevant zones
+        -- A mog tablet has been discovered in <zone>!
+
+        -- TODO: Update server var for this tablet so it can be
+        -- tracked by the Moogle
+
+        npc:setLocalVar("interactedWith", 1)
+        npc:setAnimationSub(5) -- Play "flying away" animation
+        npc:timer(5000, function(npcArg)
+            npcArg:setStatus(xi.status.DISAPPEAR)
+            npcArg:setAnimationSub(6) -- Reset animation
+        end)
+    end
 end
 
 -- Explorer Moogle in Ru'Lude Gardens
