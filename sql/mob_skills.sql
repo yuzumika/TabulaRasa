@@ -3902,11 +3902,11 @@ INSERT INTO `mob_skills` VALUES (3975,36,'drill_claw',0,7.0,2000,1500,4,0,0,0,0,
 -- INSERT INTO `mob_skills` VALUES (4234,550,'x-potion',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (4235,2598,'hyper-potion',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (4236,2598,'max_potion',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (4237,550,'mix_max_potion',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (4237,2598,'mix_max_potion',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (4238,2600,'mix_antidote',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (4239,553,'mix_para-b-gone',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (4241,555,'echo_drops',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (4245,556,'mix_panacea-1',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (4245,2604,'mix_panacea-1',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (4246,552,'antidote',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (4247,553,'mix_para-b-gone',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (4253,556,'mix_panacea-1',0,7.0,2000,1500,4,0,0,0,0,0,0);
