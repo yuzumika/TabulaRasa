@@ -1,5 +1,5 @@
 -----------------------------------
--- Mix: Dragon Shield
+-- Mix: Dragon Shield - Applies Magic Defense Bonus to all party members for 60 seconds.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

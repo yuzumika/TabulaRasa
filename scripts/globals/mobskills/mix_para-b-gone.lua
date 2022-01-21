@@ -1,5 +1,5 @@
 -----------------------------------
--- Max Potion - Restores 500 HP.
+-- Mix: Para-b-gone - Removes Paralysis.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

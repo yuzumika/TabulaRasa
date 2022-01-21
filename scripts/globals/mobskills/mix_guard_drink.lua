@@ -1,5 +1,5 @@
 -----------------------------------
--- Mix: Guard Drink
+-- Mix: Guard Drink - Applies Protect (+220 Defense) and Shell to all party members for 5 minutes.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

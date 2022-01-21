@@ -1,5 +1,5 @@
 -----------------------------------
--- Mix: Dark Potion
+-- Mix: Dark Potion - Deals 666 damage to a single enemy.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

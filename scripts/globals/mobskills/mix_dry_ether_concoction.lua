@@ -1,5 +1,5 @@
 -----------------------------------
--- Mix: Dry Ether Concoction
+-- Mix: Dry Ether Concoction - Restores 160 MP to a single party member.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

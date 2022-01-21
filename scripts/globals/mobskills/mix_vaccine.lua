@@ -1,5 +1,5 @@
 -----------------------------------
--- Max Potion - Restores 500 HP.
+-- Mix: Vaccine - Removes Plague.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

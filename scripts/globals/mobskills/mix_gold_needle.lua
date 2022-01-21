@@ -1,5 +1,5 @@
 -----------------------------------
--- Max Potion - Restores 500 HP.
+-- Mix: Gold Needle - Removes Petrification.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

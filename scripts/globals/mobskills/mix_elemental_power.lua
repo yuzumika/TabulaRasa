@@ -1,5 +1,5 @@
 -----------------------------------
--- Mix: Elemental Power
+-- Mix: Elemental Power - Applies Magic Attack Bonus to all party members for 60 seconds.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

@@ -1,5 +1,6 @@
 -----------------------------------
--- Mix: Antidote
+-- Mix: Antidote - Removes Poison Monberaux will not remove the effects
+-- of Poison Potion or other consumables like it.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

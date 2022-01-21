@@ -1,5 +1,5 @@
 -----------------------------------
--- Hyper-Potion
+-- Hyper Potion - Restores 250 HP.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")

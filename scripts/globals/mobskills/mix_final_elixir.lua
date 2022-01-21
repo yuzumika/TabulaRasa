@@ -1,5 +1,6 @@
 -----------------------------------
--- Max Potion - Restores 500 HP.
+-- Mix: Final Elixir - Restores all HP/MP to party members.
+-- Used once per elixir donation. He will need a refill to use it again.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")
