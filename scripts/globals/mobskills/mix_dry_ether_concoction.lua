@@ -12,7 +12,7 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
+    skill:setMsg(xi.msg.basic.SKILL_RECOVERS_MP)
     return 0
 end
 

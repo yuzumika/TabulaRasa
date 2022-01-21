@@ -12,8 +12,7 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
-    return 0
+    return 666
 end
 
 return mobskill_object

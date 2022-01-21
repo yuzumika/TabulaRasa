@@ -1,5 +1,5 @@
 -----------------------------------
---MMix: Max Potion - Restores 700 HP.
+-- Mix: Max Potion - Restores 700 HP.
 -- Note the subtle name difference from 'Max Potion'.
 -- This feels like a localization error otherwise.
 -----------------------------------
