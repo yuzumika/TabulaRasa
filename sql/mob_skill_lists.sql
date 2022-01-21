@@ -3628,7 +3628,26 @@ INSERT INTO `mob_skill_lists` VALUES ('TRUST_AAGK',1111,156);       -- Tachi: Fu
 INSERT INTO `mob_skill_lists` VALUES ('TRUST_AAGK',1111,937);       -- Dragonfall
 -- INSERT INTO `mob_skill_lists` VALUES ('TRUST_Iroha',1112,0);
 -- INSERT INTO `mob_skill_lists` VALUES ('TRUST_Ygnas',1113,0);
--- INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,0);
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4232); -- potion
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4234); -- x-potion
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4235); -- hyper-potion
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4236); -- max_potion
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4237); -- mix_max_potion
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4238); -- mix_antidote
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4239); -- mix_para-b-gone
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4241); -- echo_drops
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4245); -- mix_panacea-1
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4246); -- antidote
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4247); -- mix_para-b-gone
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4253); -- mix_panacea-1
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4254); -- mix_dry_ether_concoction
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4255); -- mix_guard_drink
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4256); -- mix_insomniant
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4257); -- mix_life_water
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4258); -- mix_elemental_power
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4259); -- mix_dragon_shield
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4260); -- mix_dark_potion
+INSERT INTO `mob_skill_lists` VALUES ('TRUST_Monberaux',1114,4261); -- mix_samsons_strength
 -- Reserved for future Trust 6000 (ID: 1115)
 -- Reserved for future Trust 6001 (ID: 1116)
 -- Reserved for future Trust 6002 (ID: 1117)

@@ -518,11 +518,11 @@ namespace gambits
                         }
                     }
                 }
-                else if (action.reaction == G_REACTION::MSG)
+                else if (action.reaction == G_REACTION::MS)
                 {
                     if (action.select == G_SELECT::SPECIFIC)
                     {
-                        // trustutils::SendTrustMessage(POwner, action.select_arg);
+                        controller->MobSkill(target->targid, action.select_arg);
                     }
                 }
 
@@ -582,17 +582,6 @@ namespace gambits
                 return !trigger_target->StatusEffectContainer->HasStatusEffect(static_cast<EFFECT>(predicate.condition_arg));
                 break;
             }
-            case G_CONDITION::NO_SAMBA:
-            {
-                bool noSamba = true;
-                if (trigger_target->StatusEffectContainer->HasStatusEffect(static_cast<EFFECT>(EFFECT_DRAIN_SAMBA)) ||
-                    trigger_target->StatusEffectContainer->HasStatusEffect(static_cast<EFFECT>(EFFECT_HASTE_SAMBA)))
-                {
-                    noSamba = false;
-                }
-                return noSamba;
-                break;
-            }
             case G_CONDITION::STATUS_FLAG:
             {
                 return trigger_target->StatusEffectContainer->HasStatusEffectByFlag(static_cast<EFFECTFLAG>(predicate.condition_arg));
@@ -649,6 +638,22 @@ namespace gambits
             case G_CONDITION::RANDOM:
             {
                 return xirand::GetRandomNumber<uint16>(100) < (int16)predicate.condition_arg;
+                break;
+            }
+            case G_CONDITION::NO_SAMBA:
+            {
+                bool noSamba = true;
+                if (trigger_target->StatusEffectContainer->HasStatusEffect(static_cast<EFFECT>(EFFECT_DRAIN_SAMBA)) ||
+                    trigger_target->StatusEffectContainer->HasStatusEffect(static_cast<EFFECT>(EFFECT_HASTE_SAMBA)))
+                {
+                    noSamba = false;
+                }
+                return noSamba;
+                break;
+            }
+            case G_CONDITION::HP_MISSING:
+            {
+                return (trigger_target->health.maxhp - trigger_target->health.hp) >= (int16)predicate.condition_arg;
                 break;
             }
             default:

@@ -47,6 +47,7 @@ ai.condition =
     CASTING_MA         = 17,
     RANDOM             = 18,
     NO_SAMBA           = 19,
+    HP_MISSING         = 20,
 }
 ai.c = ai.condition
 
@@ -59,7 +60,6 @@ ai.reaction =
     JA      = 3,
     WS      = 4,
     MS      = 5,
-    MSG     = 6,
 }
 ai.r = ai.reaction
 

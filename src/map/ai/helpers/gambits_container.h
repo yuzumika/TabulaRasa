@@ -50,6 +50,7 @@ namespace gambits
         CASTING_MA         = 17,
         RANDOM             = 18,
         NO_SAMBA           = 19,
+        HP_MISSING         = 20,
     };
 
     enum class G_REACTION : uint16
@@ -60,7 +61,6 @@ namespace gambits
         JA      = 3,
         WS      = 4,
         MS      = 5,
-        MSG     = 6,
     };
 
     enum class G_SELECT : uint16
