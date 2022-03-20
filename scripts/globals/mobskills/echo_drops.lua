@@ -1,5 +1,5 @@
 -----------------------------------
--- Mix: Vaccine - Removes Plague.
+-- Echo Drops - Removes Silence.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")
@@ -12,7 +12,9 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
+    if target:hasStatusEffect(xi.effect.SILENCE) then
+        target:delStatusEffect(xi.effect.SILENCE)
+    end
     return 0
 end
 

@@ -12,7 +12,9 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
+    if target:hasStatusEffect(xi.effect.BLINDNESS) then
+        target:delStatusEffect(xi.effect.BLINDNESS)
+    end
     return 0
 end
 

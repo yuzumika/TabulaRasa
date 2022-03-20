@@ -13,7 +13,9 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
+    if not target:hasStatusEffect(xi.effect.NEGATE_SLEEP) then
+        target:addStatusEffect(xi.effect.NEGATE_SLEEP, 10, 0, 60)
+    end
     return 0
 end
 

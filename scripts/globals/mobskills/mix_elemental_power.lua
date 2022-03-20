@@ -12,7 +12,9 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
+    if not target:hasStatusEffect(xi.effect.MAGIC_ATK_BOOST) then
+        target:addStatusEffect(xi.effect.MAGIC_ATK_BOOST, 20, 0, 60)
+    end
     return 0
 end
 

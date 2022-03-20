@@ -16,16 +16,17 @@ namespace gambits
 {
     enum class G_TARGET : uint16
     {
-        SELF       = 0,
-        PARTY      = 1,
-        TARGET     = 2,
-        MASTER     = 3,
-        TANK       = 4,
-        MELEE      = 5,
-        RANGED     = 6,
-        CASTER     = 7,
-        TOP_ENMITY = 8,
-        CURILLA    = 9, // Special case for Rainemard
+        SELF        =  0,
+        PARTY       =  1,
+        TARGET      =  2,
+        MASTER      =  3,
+        TANK        =  4,
+        MELEE       =  5,
+        RANGED      =  6,
+        CASTER      =  7,
+        TOP_ENMITY  =  8,
+        CURILLA     =  9, // Special case for Rainemard
+        PARTY_MULTI = 10,
     };
 
     enum class G_CONDITION : uint16

@@ -177,6 +177,18 @@ namespace gambits
                 });
                 return result;
             }
+            else if (predicate.target == G_TARGET::PARTY_MULTI)
+            {
+                uint8 count = 0;
+                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
+                {
+                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate))
+                    {
+                        ++count;
+                    }
+                });
+                return count > 1;
+            }
 
             // Fallthrough
             return false;

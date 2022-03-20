@@ -13,7 +13,8 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
+    target:addHP(target:getMaxHP())
+    target:addMP(target:getMaxMP())
     return 0
 end
 

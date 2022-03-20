@@ -1,5 +1,5 @@
 -----------------------------------
--- Mix: Holy Water - Removes Curse.
+-- Vaccine - Removes Plague.
 -----------------------------------
 require("scripts/settings/main")
 require("scripts/globals/status")
@@ -12,7 +12,9 @@ mobskill_object.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
-
+    if target:hasStatusEffect(xi.effect.PLAGUE) then
+        target:delStatusEffect(xi.effect.PLAGUE)
+    end
     return 0
 end
 

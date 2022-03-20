@@ -13,6 +13,7 @@ end
 
 mobskill_object.onMobWeaponSkill = function(target, mob, skill)
     skill:setMsg(xi.msg.basic.SKILL_RECOVERS_MP)
+    target:addMP(160)
     return 0
 end
 

@@ -12,8 +12,7 @@ item_object.onItemCheck = function(target)
 end
 
 item_object.onItemUse = function(target)
-
-    if (target:hasStatusEffect(xi.effect.SILENCE) == true) then
+    if target:hasStatusEffect(xi.effect.SILENCE) then
         target:delStatusEffect(xi.effect.SILENCE)
     end
 end
