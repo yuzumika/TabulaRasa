@@ -38,7 +38,8 @@ spell_object.onMobSpawn = function(mob)
     --       with a 10,000g lower limit and 100,000g upper limit. Donating more does not change the effect. Upgrade lasts until the next conquest tally.
 
     -- TODO: All the status moves need capping
-    mob:addSimpleGambit(ai.t.PARTY, ai.c.STATUS, xi.effect.POISON, ai.r.MS, ai.s.SPECIFIC, 4238) -- Mix: Antidote
+    mob:addSimpleGambit(ai.t.PARTY, ai.c.STATUS, xi.effect.SILENCE, ai.r.MS, ai.s.SPECIFIC, 4241) -- Echo Drops
+    mob:addSimpleGambit(ai.t.PARTY, ai.c.STATUS, xi.effect.POISON, ai.r.MS, ai.s.SPECIFIC, 4241) -- Mix: Antidote
 
     -- TODO: Seems to only use Elemental Power with an offensive caster in the group.
     mob:addSimpleGambit(ai.t.CASTER, ai.c.NOT_STATUS, xi.effect.MAGIC_ATK_BOOST, ai.r.MS, ai.s.SPECIFIC, 4258, 120) -- Mix: Elemental Power
