@@ -351,35 +351,41 @@ namespace trustutils
 
         // Trust do not really have weapons, but they are modelled internally as
         // if they do.
-        auto* mainWeapon   = (CItemWeapon*)PTrust->m_Weapons[SLOT_MAIN];
-        auto* rangedWeapon = (CItemWeapon*)PTrust->m_Weapons[SLOT_RANGED];
-        auto* ammoWeapon   = (CItemWeapon*)PTrust->m_Weapons[SLOT_AMMO];
+        if (auto* mainWeapon = dynamic_cast<CItemWeapon*>(PTrust->m_Weapons[SLOT_MAIN]))
+        {
+            mainWeapon->setMaxHit(1);
+            mainWeapon->setSkillType(trustData->cmbSkill);
 
-        mainWeapon->setMaxHit(1);
-        mainWeapon->setSkillType(trustData->cmbSkill);
+            mainWeapon->setDamage(static_cast<uint16>(finalDamage));
+            mainWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
+            mainWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+        }
 
-        mainWeapon->setDamage(static_cast<uint16>(finalDamage));
-        mainWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
-        mainWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+        if (auto* subWeapon = dynamic_cast<CItemWeapon*>(PTrust->m_Weapons[SLOT_SUB]))
+        {
+            subWeapon->setDamage(static_cast<uint16>(finalDamage));
+            subWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
+            subWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+        }
 
-        rangedWeapon->setDamage(static_cast<uint16>(finalDamage));
-        rangedWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
-        rangedWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+        if (auto* rangedWeapon = dynamic_cast<CItemWeapon*>(PTrust->m_Weapons[SLOT_RANGED]))
+        {
+            rangedWeapon->setDamage(static_cast<uint16>(finalDamage));
+            rangedWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
+            rangedWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+        }
 
-        ammoWeapon->setDamage(static_cast<uint16>(finalDamage));
-        ammoWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
-        ammoWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+        if (auto* ammoWeapon = dynamic_cast<CItemWeapon*>(PTrust->m_Weapons[SLOT_AMMO]))
+        {
+            ammoWeapon->setDamage(static_cast<uint16>(finalDamage));
+            ammoWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
+            ammoWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+        }
 
         if (trustData->mJob == JOB_NIN ||
             trustData->mJob == JOB_THF ||
             trustData->mJob == JOB_DNC)
         {
-            auto* subWeapon = (CItemWeapon*)PTrust->m_Weapons[SLOT_SUB];
-
-            subWeapon->setDamage(static_cast<uint16>(finalDamage));
-            subWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
-            subWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
-
             PTrust->m_dualWield = true;
         }
 
