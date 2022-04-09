@@ -370,6 +370,19 @@ namespace trustutils
         ammoWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
         ammoWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
 
+        if (trustData->mJob == JOB_NIN ||
+            trustData->mJob == JOB_THF ||
+            trustData->mJob == JOB_DNC)
+        {
+            auto* subWeapon = (CItemWeapon*)PTrust->m_Weapons[SLOT_SUB];
+
+            subWeapon->setDamage(static_cast<uint16>(finalDamage));
+            subWeapon->setDelay((trustData->cmbDelay * 1000) / 60);
+            subWeapon->setBaseDelay((trustData->cmbDelay * 1000) / 60);
+
+            PTrust->m_dualWield = true;
+        }
+
         // Spell lists
         auto* spellList = mobSpellList::GetMobSpellList(trustData->spellList);
         if (spellList)
