@@ -241,9 +241,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     }
 
     // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
-    if (dynamic_cast<CMobEntity*>(m_attacker))
+    if (auto* PMob = dynamic_cast<CMobEntity*>(m_attacker))
     {
-        auto multiHitMax = (uint8) static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
+        auto multiHitMax = (uint8)PMob->getMobMod(MOBMOD_MULTI_HIT);
 
         if (multiHitMax > 0)
         {
@@ -435,7 +435,7 @@ void CAttackRound::CreateDakenAttack()
 {
     if (m_attacker->objtype == TYPE_PC)
     {
-        auto* PAmmo = static_cast<CItemWeapon*>(m_attacker->m_Weapons[SLOT_AMMO]);
+        auto* PAmmo = dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[SLOT_AMMO]);
         if (PAmmo && PAmmo->isShuriken())
         {
             uint16 daken = m_attacker->getMod(Mod::DAKEN);
