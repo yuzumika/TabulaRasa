@@ -64,6 +64,8 @@ struct Trust_t
     uint16 cmbDmgMult;
     uint16 cmbDelay;
     uint8  speed;
+    uint8  subSpeed;
+
     // stat ranks
     uint8 strRank;
     uint8 dexRank;
@@ -227,7 +229,11 @@ namespace trustutils
                 trust->HPscale   = sql->GetFloatData(18);
                 trust->MPscale   = sql->GetFloatData(19);
 
-                trust->speed     = (uint8)sql->GetIntData(20);
+                // retail seems to have a static *155* for all Trusts in client memory
+                // similarly speedSub is always 50
+                //trust->speed     = (uint8)sql->GetIntData(20);
+                trust->speed    = 155;
+                trust->subSpeed = 50;
 
                 trust->strRank   = (uint8)sql->GetIntData(21);
                 trust->dexRank   = (uint8)sql->GetIntData(22);
@@ -327,6 +333,7 @@ namespace trustutils
         PTrust->HPscale          = trustData->HPscale;
         PTrust->MPscale          = trustData->MPscale;
         PTrust->speed            = trustData->speed;
+        PTrust->speedsub         = trustData->subSpeed;
         PTrust->m_TrustID        = trustData->trustID;
         PTrust->status           = STATUS_TYPE::NORMAL;
         PTrust->m_ModelRadius    = trustData->radius;
