@@ -43,7 +43,7 @@ end
 
 zone_object.onGameDay = function()
     -- Removes daily the bit mask that tracks the treats traded for Harvest Festival.
-    if isHalloweenEnabled() ~= 0 then
+    if xi.events.harvest_festival.isEnabled() then
         clearVarFromAll("harvestFestTreats")
         clearVarFromAll("harvestFestTreats2")
     end

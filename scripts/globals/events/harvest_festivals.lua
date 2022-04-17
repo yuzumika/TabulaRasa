@@ -5,82 +5,75 @@ require("scripts/settings/main")
 require("scripts/globals/status")
 require("scripts/globals/utils")
 -----------------------------------
+xi = xi or {}
+xi.events = xi.events or {}
+xi.events.harvest_festival = {}
 
-function isHalloweenEnabled()
-    local option = 0
+xi.events.harvest_festival.isEnabled = function()
     local month = tonumber(os.date("%m"))
     local day = tonumber(os.date("%d"))
-    if (month == 10 and day >= 20 or month == 11 and day == 1 or xi.settings.HALLOWEEN_YEAR_ROUND ~= 0) then -- According to wiki Harvest Fest is Oct 20 - Nov 1.
-        if (xi.settings.HALLOWEEN_2005 == 1) then
-            option = 1
-        elseif (HALLOWEEN_2008 == 1) then
-            option = 2
-        elseif (HALLOWEEN_2009 == 1) then
-            option = 3
-        elseif (HALLOWEEN_2010 == 1) then
-            option = 4
-        end
+
+    if
+        ((month == 10 and day >= 20) or
+        (month == 11 and day == 1) or
+        xi.settings.HALLOWEEN_YEAR_ROUND == 1) and
+        xi.settings.HALLOWEEN_2005 == 1
+    then
+        return true
     end
-    return option
+
+    return false
 end
 
-
 local function halloweenItemsCheck(player)
-    local headSlot = player:getEquipID(xi.slot.HEAD)
-    local mainHand = player:getEquipID(xi.slot.MAIN)
-    local reward = 0
+    local rewardItemID = 0
 
-    -- Normal Quality Rewards
-    local pumpkinHead = 13916
-    local pumpkinHead2 = 15176
-    local trickStaff = 17565
-    local trickStaff2 = 17587
+    local rewardInfo =
+    {
+        { xi.items.PUMPKIN_HEAD,    xi.items.HORROR_HEAD,    xi.slot.HEAD },
+        { xi.items.PUMPKIN_HEAD_II, xi.items.HORROR_HEAD_II, xi.slot.HEAD },
+        { xi.items.TRICK_STAFF,     xi.items.TREAT_STAFF,    xi.slot.MAIN },
+        { xi.items.TRICK_STAFF_II,  xi.items.TREAT_STAFF_II, xi.slot.MAIN },
+    }
 
-    local reward_list = {pumpkinHead, pumpkinHead2, trickStaff, trickStaff2}
-
-    -- Checks for HQ Upgrade
-    for ri = 1, #reward_list do
-        if (headSlot == reward_list[ri] or mainHand == reward_list[ri]) then
-            if (headSlot == pumpkinHead and player:hasItem(13917) == false) then
-                reward = 13917 -- Horror Head
-            elseif (headSlot == pumpkinHead2 and player:hasItem(15177) == false) then
-                reward = 15177 -- Horror Head II
-            elseif (mainHand == trickStaff and player:hasItem(17566) == false) then
-                reward =  17566 -- Treat Staff
-            elseif (mainHand == trickStaff2 and player:hasItem(17588) == false) then
-                reward = 17588 -- Treat Staff II
-            end
-            return reward
+    -- Handle HQ Upgrade Items
+    for _, rewardData in ipairs(rewardInfo) do
+        if
+            player:getEquipID(rewardData[3]) == rewardData[1] and
+            not player:findItem(rewardData[2])
+        then
+            rewardItemID = rewardData[2]
+            break
         end
     end
 
-    -- Checks the possible item rewards to ensure player doesnt already have the item we are about to give them
-    local cnt = #reward_list
+    -- Handle NQ Items, and ensure player does not already have one
+    local cnt = #rewardInfo
 
     while cnt ~= 0 do
-        local picked = reward_list[math.random(1, #reward_list)]
-        if (player:hasItem(picked) == false) then
-            reward = picked
+        local selectedItemID = rewardInfo[math.random(1, #rewardInfo)][1]
+
+        if not player:findItem(selectedItemID) then
+            rewardItemID = selectedItemID
             cnt = 0
         else
-            table.remove(reward_list, picked)
+            table.remove(rewardInfo, selectedItemID)
             cnt = cnt - 1
         end
     end
 
-    return reward
+    return rewardItemID
 end
 
-function onHalloweenTrade(player, trade, npc)
+xi.events.harvest_festival.onHarvestFestivalTrade = function(player, trade, npc)
     local zone = player:getZoneName()
     local ID = zones[player:getZoneID()]
 
-    local contentEnabled = isHalloweenEnabled()
     local item = trade:getItemId()
     -----------------------------------
     -- 2005 edition
     -----------------------------------
-    if (contentEnabled == 1) then
+    if xi.events.harvest_festival.isHalloweenEnabled() then
         -----------------------------------
         -- Treats allowed
         -----------------------------------
@@ -132,12 +125,11 @@ function onHalloweenTrade(player, trade, npc)
         }
 
         for itemInList = 1, #treats_table  do
-
-            if (item == treats_table[itemInList]) then
+            if item == treats_table[itemInList] then
                 local itemReward = halloweenItemsCheck(player)
                 local varName = "harvestFestTreats"
                 local harvestFestTreats
-                if (itemInList < 32) then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
+                if itemInList < 32 then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
 
                     harvestFestTreats = player:getCharVar(varName)
                 else
@@ -148,7 +140,11 @@ function onHalloweenTrade(player, trade, npc)
                 end
 
                 local AlreadyTradedChk = utils.mask.getBit(harvestFestTreats, itemInList)
-                if (itemReward ~= 0 and player:getFreeSlotsCount() >= 1 and math.random(1, 3) < 2) then -- Math.random added so you have 33% chance on getting item
+                if
+                    itemReward ~= 0 and
+                    player:getFreeSlotsCount() >= 1 and
+                    math.random(1, 3) < 2
+                then -- Math.random added so you have 33% chance on getting item
 
                     player:messageSpecial(ID.text.HERE_TAKE_THIS)
                     player:addItem(itemReward)
@@ -195,15 +191,16 @@ function onHalloweenTrade(player, trade, npc)
                     }
 
                     for zi = 1, #pitchForkCostumeList, 3 do
-
-                        if (zone == pitchForkCostumeList[zi] and (costumePicked == pitchForkCostumeList[zi + 1] or zone == pitchForkCostumeList[zi] and costumePicked == pitchForkCostumeList[zi + 2])) then -- Gives special hint for pitch fork costume
+                        if
+                            zone == pitchForkCostumeList[zi] and
+                            (costumePicked == pitchForkCostumeList[zi + 1] or
+                            zone == pitchForkCostumeList[zi] and
+                            costumePicked == pitchForkCostumeList[zi + 2])
+                        then -- Gives special hint for pitch fork costume
                             player:messageSpecial(ID.text.IF_YOU_WEAR_THIS)
-
-                        elseif (zi == 16) then
+                        elseif zi == 16 then
                             player:messageSpecial(ID.text.THANK_YOU_TREAT)
-
                         end
-
                     end
                 else
                     player:messageSpecial(ID.text.THANK_YOU)
@@ -214,7 +211,6 @@ function onHalloweenTrade(player, trade, npc)
                 end
 
                 player:tradeComplete()
-
                 break
             end
         end
@@ -222,14 +218,17 @@ function onHalloweenTrade(player, trade, npc)
 end
 
 function applyHalloweenNpcCostumes(zoneid)
-    if isHalloweenEnabled() ~= 0 then
-        local skins = zones[zoneid].npc.HALLOWEEN_SKINS
-        if skins then
-            for id, skin in pairs(skins) do
-                local npc = GetNPCByID(id)
-                if npc then
-                    npc:changeSkin(skin)
-                end
+    if not xi.events.harvest_festival.isEnabled() then
+        return
+    end
+
+    local skins = zones[zoneid].npc.HALLOWEEN_SKINS
+    if skins then
+        for id, skin in pairs(skins) do
+            local npc = GetNPCByID(id)
+
+            if npc then
+                npc:changeSkin(skin)
             end
         end
     end

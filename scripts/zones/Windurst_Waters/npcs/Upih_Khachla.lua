@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Windurst_Waters/IDs")
 local entity = {}
 
 entity.onTrade = function(player, npc, trade)
-    onHalloweenTrade(player, trade, npc)
+    xi.events.harvest_festival.onHarvestFestivalTrade(player, trade, npc)
 end
 
 entity.onTrigger = function(player, npc)
