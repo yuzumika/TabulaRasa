@@ -122,8 +122,6 @@ namespace moduleutils
 
     void LoadLuaModules()
     {
-        sol::state& lua = luautils::lua;
-
         // Load the helper file
         lua.safe_script_file("./modules/module_utils.lua", &sol::script_pass_on_error);
 
@@ -198,7 +196,6 @@ namespace moduleutils
 
     void TryApplyLuaModules()
     {
-        sol::state& lua = luautils::lua;
         for (auto& override : overrides)
         {
             if (!override.applied)

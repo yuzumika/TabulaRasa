@@ -29,7 +29,7 @@ class RenamerModule : public CPPModule
         ShowInfo(fmt::format("{} requested renamer list for {}", PChar->GetName(), PChar->loc.zone->GetName()));
 
         auto zoneId = PChar->getZone();
-        auto zoneTable = luautils::lua["xi"]["renamerTable"].get<sol::table>()[zoneId].get<sol::table>();
+        auto zoneTable = lua["xi"]["renamerTable"].get<sol::table>()[zoneId].get<sol::table>();
 
         std::string dataString;
         for (auto [key, value] : zoneTable)
