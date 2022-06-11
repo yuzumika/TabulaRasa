@@ -30,11 +30,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "search.h"
 
 CDataLoader::CDataLoader()
-: sql(std::make_unique<SqlConnection>(search_config.mysql_login.c_str(),
-                                      search_config.mysql_password.c_str(),
-                                      search_config.mysql_host.c_str(),
-                                      search_config.mysql_port,
-                                      search_config.mysql_database.c_str()))
+: sql(std::make_unique<SqlConnection>())
 {
 }
 
@@ -579,11 +575,7 @@ std::string CDataLoader::GetSearchComment(uint32 playerId)
 
 void CDataLoader::ExpireAHItems()
 {
-    auto sql2 = std::make_unique<SqlConnection>(search_config.mysql_login.c_str(),
-                                                search_config.mysql_password.c_str(),
-                                                search_config.mysql_host.c_str(),
-                                                search_config.mysql_port,
-                                                search_config.mysql_database.c_str());
+    auto sql2 = std::make_unique<SqlConnection>();
 
     std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
                             T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
