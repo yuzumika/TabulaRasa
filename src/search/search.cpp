@@ -24,6 +24,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include "common/blowfish.h"
 #include "common/cbasetypes.h"
 #include "common/console_service.h"
+#include "common/kernel.h"
 #include "common/logging.h"
 #include "common/lua.h"
 #include "common/md52.h"
@@ -117,6 +118,8 @@ void PrintPacket(char* data, int size)
 
 int32 main(int32 argc, char** argv)
 {
+    gRunFlag = true;
+
     bool appendDate{};
 #ifdef WIN32
     WSADATA wsaData;
@@ -203,6 +206,9 @@ int32 main(int32 argc, char** argv)
         return 1;
     }
 
+    u_long mode = 1; // 1 to enable non-blocking socket
+    ioctlsocket(ListenSocket, FIONBIO, &mode);
+
     // Setup the TCP listening socket
     iResult = bind(ListenSocket, result->ai_addr, (int)result->ai_addrlen);
     if (iResult == SOCKET_ERROR)
@@ -269,18 +275,27 @@ int32 main(int32 argc, char** argv)
     });
     // clang-format on
 
-    while (true)
+    while (gRunFlag)
     {
         // Accept a client socket
         ClientSocket = accept(ListenSocket, nullptr, nullptr);
-        if (ClientSocket == INVALID_SOCKET)
+        if (ClientSocket == INVALID_SOCKET && WSAGetLastError() != EWOULDBLOCK)
         {
+            int err = 0;
 #ifdef WIN32
-            ShowError("accept failed with error: %d", WSAGetLastError());
+            err = WSAGetLastError();
 #else
-            ShowError("accept failed with error: %d", errno);
+            err = errno;
 #endif
-            continue;
+            if (err == WSAEWOULDBLOCK || err == EWOULDBLOCK)
+            {
+                std::this_thread::sleep_for(200ms);
+            }
+            else
+            {
+                ShowError("accept failed with error: %d", WSAGetLastError());
+                continue;
+            }
         }
 
         std::thread(TCPComm, ClientSocket).detach();

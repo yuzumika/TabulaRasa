@@ -36,3 +36,5 @@ struct search_req
     uint8    nameLen;
     uint8    commentType;
 };
+
+int32 main(int32 argc, char** argv);
