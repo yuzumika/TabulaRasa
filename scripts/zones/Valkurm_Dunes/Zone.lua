@@ -6,8 +6,10 @@ require("scripts/quests/i_can_hear_a_rainbow")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
+require("scripts/globals/mog_tablets")
 require("scripts/globals/status")
 require("scripts/missions/amk/helpers")
+require("scripts/globals/garrison")
 -----------------------------------
 local zone_object = {}
 
@@ -17,6 +19,11 @@ end
 
 zone_object.onInitialize = function(zone)
     xi.conq.setRegionalConquestOverseers(zone:getRegionID())
+    xi.mogTablet.onZoneInitialize(zone)
+end
+
+zone_object.onZoneTick = function(zone)
+    xi.mogTablet.onZoneTick(zone)
 end
 
 zone_object.onZoneIn = function(player, prevZone)
@@ -40,6 +47,7 @@ end
 
 zone_object.onConquestUpdate = function(zone, updatetype)
     xi.conq.onConquestUpdate(zone, updatetype)
+    xi.garrison.buildNpcTable(zone)
 end
 
 zone_object.onRegionEnter = function(player, region)

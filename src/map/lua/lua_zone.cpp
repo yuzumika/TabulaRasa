@@ -221,7 +221,7 @@ std::optional<CLuaBaseEntity> CLuaZone::insertDynamicEntity(sol::table table)
 
     m_pLuaZone->GetZoneEntities()->dynamicTargIds.insert(PEntity->targid);
 
-    PEntity->id = 0x1000100 + (ZoneID << 12) + PEntity->targid;
+    PEntity->id = 0x1000000 + (ZoneID << 12) + PEntity->targid;
 
     PEntity->loc.zone       = m_pLuaZone;
     PEntity->loc.p.rotation = table.get_or<uint8>("rotation", 0);
@@ -319,7 +319,12 @@ std::optional<CLuaBaseEntity> CLuaZone::insertDynamicEntity(sol::table table)
     }
     else if (table["look"].get_type() == sol::type::string)
     {
-        auto look = stringToLook(table.get<std::string>("look"));
+        auto lookStr = table.get<std::string>("look");
+        if (lookStr.size() >= 4 && ((lookStr[1] == 'x' && lookStr[3] == '1') || lookStr[1] == '1'))
+        {
+            PEntity->look.size = MODEL_EQUIPPED;
+        }
+        auto look = stringToLook(lookStr);
         std::memcpy(&PEntity->look, &look, sizeof(PEntity->look));
     }
 
