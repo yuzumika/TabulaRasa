@@ -698,7 +698,7 @@ uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
     }
     acc += getMod(Mod::RACC);
     acc += battleutils::GetRangedAccuracyBonuses(this);
-    acc += (AGI() / 2;
+    acc += AGI() / 2;
     return acc + std::min<int16>(((100 + getMod(Mod::FOOD_RACCP) * acc) / 100), getMod(Mod::FOOD_RACC_CAP));
 }
 
