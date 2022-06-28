@@ -186,7 +186,7 @@ UPDATE mob_groups SET minLevel='53',maxLevel='55' WHERE name='Nekros_Hound' AND 
 
 UPDATE mob_groups SET minLevel='26',maxLevel='30' WHERE name='Accursed_Soldier' AND groupid='23' AND zoneid='196';
 UPDATE mob_groups SET minLevel='23',maxLevel='27' WHERE name='Accursed_Sorcerer' AND groupid='24' AND zoneid='196';
-UPDATE mob_groups SET minLevel='27',maxLevel='30' WHERE name='Dragonfly' AND groupid='25' AND zoneid='196';
+UPDATE mob_groups SET minLevel='27',maxLevel='30' WHERE name='Madfly' AND groupid='25' AND zoneid='196';
 UPDATE mob_groups SET minLevel='23',maxLevel='26' WHERE name='Rockmill' AND groupid='26' AND zoneid='196';
 
 -- ------------------------------------------------------------
