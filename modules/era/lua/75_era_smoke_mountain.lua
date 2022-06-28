@@ -9,7 +9,7 @@ require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 -----------------------------------
 local entity = {}
-local m = Module:new("smoke_mountain_fix")
+local m = Module:new("75_era_smoke_mountain")
 
 m:addOverride("xi.zones.South_Gustaberg.npcs.qm2.onTrade", function(player, npc, trade)
     if not player:needToZone() then
