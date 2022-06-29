@@ -46,15 +46,6 @@ xi.customShop.Aulavia =
     1410, 1656,     -- Sweet William
 }
 
-xi.customShop.Emaliveulaux =
-{
-    1523,  290, -- Apple Mint
-    5164, 1945, -- Ground Wasabi
-    17005,  99, -- Lufaise Fly
-    5195,  233, -- Misareaux Parsley
-    1695,  920, -- Habanero Peppers
-}
-
 xi.customShop.Faustin =
 {
     639, 110,    -- Chestnut
@@ -212,15 +203,6 @@ xi.customShop.Bonmaurieut =
     721,   147,    -- Rattan Lumber
 }
 
-xi.customShop.Deguerendars =
-{
-    1523,  290,    -- Apple Mint
-    5164, 1945,    -- Ground Wasabi
-    17005,  99,    -- Lufaise Fly
-    5195,  233,    -- Misareaux Parsley
-    1695,  920,    -- Habanero Peppers
-}
-
 xi.customShop.Fiva =
 {
     4503,  184,    -- Buburimu Grape
@@ -267,15 +249,6 @@ xi.customShop.Vendavoq =
 }
 
 --Port Windurst
-xi.customShop.Alizabe =
-{
-    1523,  290,    -- Apple Mint
-    5164, 1945,    -- Ground Wasabi
-    17005,  99,    -- Lufaise Fly
-    5195,  233,    -- Misareaux Parsley
-    1695,  920,    -- Habanero Peppers
-}
-
 xi.customShop.Lebondur =
 {
     636,   119,    -- Chamomile
@@ -472,7 +445,6 @@ local lookupTable =
     {"Bastok_Markets", "Somn-Paemn", xi.customShop.SomnPaemn, xi.quest.fame_area.BASTOK, "SOMNPAEMN_OPEN_DIALOG"},
     --Bastok Mines
     {"Bastok_Mines", "Aulavia", xi.customShop.Aulavia, xi.quest.fame_area.BASTOK, "AULAVIA_OPEN_DIALOG"},
-    {"Bastok_Mines", "Emaliveulaux", xi.customShop.Emaliveulaux, xi.quest.fame_area.BASTOK, "EMALIVEULAUX_OPEN_DIALOG"},
     {"Bastok_Mines", "Faustin", xi.customShop.Faustin, xi.quest.fame_area.BASTOK, "FAUSTIN_OPEN_DIALOG"},
     {"Bastok_Mines", "Galdeo", xi.customShop.Galdeo, xi.quest.fame_area.BASTOK, "GALDEO_OPEN_DIALOG"},
     {"Bastok_Mines", "Mille", xi.customShop.Mille, xi.quest.fame_area.BASTOK, "MILLE_OPEN_DIALOG"},
@@ -497,14 +469,12 @@ local lookupTable =
     {"Port_Bastok", "Zoby_Quhyo", xi.customShop.Zoby_Quhyo, xi.quest.fame_area.BASTOK, "ZOBYQUHYO_OPEN_DIALOG"},
     --Port Sandoria
     {"Port_San_dOria", "Bonmaurieut", xi.customShop.Bonmaurieut, xi.quest.fame_area.SANDORIA, "BONMAURIEUT_OPEN_DIALOG"},
-    {"Port_San_dOria", "Deguerendars", xi.customShop.Deguerendars, xi.quest.fame_area.SANDORIA, "DEGUERENDARS_OPEN_DIALOG"},
     {"Port_San_dOria", "Fiva", xi.customShop.Fiva, xi.quest.fame_area.SANDORIA, "FIVA_OPEN_DIALOG"},
     {"Port_San_dOria", "Milva", xi.customShop.Milva, xi.quest.fame_area.SANDORIA, "MILVA_OPEN_DIALOG"},
     {"Port_San_dOria", "Nimia", xi.customShop.Nimia, xi.quest.fame_area.SANDORIA, "NIMIA_OPEN_DIALOG"},
     {"Port_San_dOria", "Patolle", xi.customShop.Patolle, xi.quest.fame_area.SANDORIA, "PATOLLE_OPEN_DIALOG"},
     {"Port_San_dOria", "Vendavoq", xi.customShop.Vendavoq, xi.quest.fame_area.SANDORIA, "VENDAVOQ_OPEN_DIALOG"},
     --Port Windurst
-    {"Port_Windurst", "Alizabe", xi.customShop.Alizabe, xi.quest.fame_area.WINDURST, "ALIZABE_OPEN_DIALOG"},
     {"Port_Windurst", "Lebondur", xi.customShop.Lebondur, xi.quest.fame_area.WINDURST, "LEBONDUR_OPEN_DIALOG"},
     {"Port_Windurst", "Posso_Ruhbini", xi.customShop.Posso_Ruhbini, xi.quest.fame_area.WINDURST, "POSSORUHBINI_OPEN_DIALOG"},
     {"Port_Windurst", "Sattsuh_Ahkanpari", xi.customShop.Sattsuh_Ahkanpari, xi.quest.fame_area.WINDURST, "SATTSUHAHKANPARI_OPEN_DIALOG"},
