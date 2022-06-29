@@ -28,7 +28,7 @@ xi.customShop.Amalasanda =
     1555,317, -- Coriander
     1590,700, -- Holy Basil
     1475,244, -- Curry Powder
-    5164,310, -- Ground Wasabi
+    5164,2595, -- Ground Wasabi
     1652,492, -- Rice Vinegar
     1161,70, -- Uchitake
     1170,70, -- Makibishi
