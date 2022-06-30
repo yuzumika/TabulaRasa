@@ -25,7 +25,7 @@ class AHPaginationModule : public CPPModule
 
         // If this is set to 7, the client won't let you put up more than 7 items. So, 6.
         auto ITEMS_PER_PAGE = 6U;
-        auto TOTAL_PAGES = 6;
+        auto TOTAL_PAGES = 12;
 
         ShowNotice("[AH PAGES] Setting map_config.ah_list_limit to %i.", ITEMS_PER_PAGE * TOTAL_PAGES)
         map_config.ah_list_limit = ITEMS_PER_PAGE * TOTAL_PAGES;
