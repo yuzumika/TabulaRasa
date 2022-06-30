@@ -355,7 +355,6 @@ xi.garrison.spawnWave = function(player, npc, wave, party)
             GetMobByID(bossId):addStatusEffect(xi.effect.BATTLEFIELD, 1, 0, 0)
             for _, npcID in ipairs(npcs) do
                 if GetMobByID(npcID):isAlive() then
-                    GetMobByID(npcID):addEnmity(GetMobByID(bossId), 1, 1)
                     GetMobByID(bossId):addEnmity(GetMobByID(npcID), 1, 1)
                 end
             end
