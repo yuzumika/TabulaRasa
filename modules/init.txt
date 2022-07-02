@@ -61,3 +61,4 @@ era/lua/75_era_argus.lua
 era/sql/75_era_drops.sql
 era/sql/75_era_guild_vendors.sql
 era/lua/75_era_guild_vendors.lua
+era/sql/RoZ_era_nms.sql
